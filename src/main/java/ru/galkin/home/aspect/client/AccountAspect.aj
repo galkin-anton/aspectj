@@ -23,7 +23,7 @@ public aspect AccountAspect {
       call(boolean Account.withdraw(int)) && args(amount) && target(acc);
 
     before(int amount, Account acc): callWithDraw(amount, acc) {
-        logger.warn("Before amount {}, balance", amount, acc.balance);
+        logger.warn("Before amount {}, balance {}, sign {}", amount, acc.balance, thisJoinPoint.getSignature());
     }
 
     boolean around(int amount, Account acc):
